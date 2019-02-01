@@ -1,3 +1,5 @@
+var inquirer = require ("inquirer");
+
 function Letter (letter, guessed){
     this.letter = letter;
     this.guessed = guessed;
@@ -13,3 +15,16 @@ function Letter (letter, guessed){
         else {guessed = false}
     };
 };
+
+function getLetter(loop){
+    inquirer.prompt([{
+        name:"letter", 
+        question:"Enter a letter: "
+    }]).then(function(answers){
+        var newLetter = new Letter (answers.letter, true) ;
+        loop++;
+        getLetter(loop);
+    })
+}
+
+getLetter()
