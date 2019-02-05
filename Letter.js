@@ -1,30 +1,29 @@
-var inquirer = require ("inquirer");
+var underscore = "_";
+
+var guessed = false;
 
 function Letter (letter, guessed){
     this.letter = letter;
-    this.guessed = guessed;
+    this.guessed = false;
     this.show = function (){
         if (guessed){
-        return this.letter}
-        else{return _ }
+        return letter}
+        else{return underscore }
     };
-    this.check= function (guess){
-        if (this.letter===guess){
-            guessed = true
+    this.guess = function (char) {
+        console.log(char)
+        if (letter===char){
+        guessed=true;
+        console.log(guessed);
         }
-        else {guessed = false}
     };
 };
 
-function getLetter(loop){
-    inquirer.prompt([{
-        name:"letter", 
-        question:"Enter a letter: "
-    }]).then(function(answers){
-        var newLetter = new Letter (answers.letter, true) ;
-        loop++;
-        getLetter(loop);
-    })
-}
+var input = new Letter ("a", guessed)
 
-getLetter()
+console.log(input)
+
+input.guess("b")
+
+
+//module.exports=Letter;
